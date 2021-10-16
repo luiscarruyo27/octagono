@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.min.css">
+    <title>Octagono Regular</title>
+</head>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+<script>
+    function calcular2(log, Ap) {
+        var parametros = {
+            "log": log,
+            "Ap": Ap
+        };
+        $.ajax({
+            url: "ejecutar2.php",
+            type: "post",
+            data: parametros,
+            beforeSend: function () {
+                $("#resp").html("Procesando, espere por favor...");
+            },
+            fail: function () {
+                $("#resp").html("Error al realizar el calculo");
+            },
+            success: function (response) {
+                $("#resp").html(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    }
+</script>
+<body>
+        </div>
+        <div class="caja col-lg-5 col-5" style="padding: 30px;">
+            <h1>Area de Octágono Regular</h1>
+            <br>
+            <div class="form-group col-md-8" style="text-align: center;">
+                <h5 style="margin-top: 60px;" >Valor de la longitud</h5>
+                <input class="form-control" type="text" name="log" id="log">
+            </div>
+
+            <div class="form-group col-md-8">
+                <h5 style="margin-top: 40px;">Valor de la apotema</h5>
+                <input class="form-control" type="text" name="Ap" id="Ap">
+            </div>
+
+            <button
+                onclick="calcular2($('#log').val(), $('#Ap').val())" class="btn btn-primary" type="submit" style="margin-top: 60px;" name="action">Calcular
+            </button>
+        </div>
+    </div>
+    <div id="resp" class="caja1" style="padding: 10px; margin-bottom: 100px;">
+        <h3>Resultado</h3>
+    </div>
+</body>
+</html>
